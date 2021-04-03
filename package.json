@@ -1,0 +1,35 @@
+{
+  "name": "github_showcase",
+  "version": "1.0.0",
+  "description": "GitHub Showcase is an open-source website that allows users to showcase their projects and get some exposure",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development ./showcase/frontend/src/index.js --watch",
+    "build": "webpack --mode production ./showcase/frontend/src/index.js --output ./showcase/frontend/static/frontend/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TMDStudios/github_showcase.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TMDStudios/github_showcase/issues"
+  },
+  "homepage": "https://github.com/TMDStudios/github_showcase#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
