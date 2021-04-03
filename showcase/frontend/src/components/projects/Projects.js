@@ -1,13 +1,54 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getProjects, deleteProject } from '../../actions/projects';
 
 export class Projects extends Component {
+    static propTypes = {
+        projects: PropTypes.array.isRequired,
+        getProjects: PropTypes.func.isRequired,
+        deleteProject: PropTypes.func.isRequired
+    };
+
+    componentDidMount() {
+        this.props.getProjects();
+    };
+
     render() {
         return (
-            <div>
-                <h1>Projects List</h1>
-            </div>
+            <Fragment>
+                <h2>Projects</h2>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.props.projects.map(project => (
+                            <tr key={ project.id }>
+                                <td>{ project.id }</td>
+                                <td>{ project.name }</td>
+                                <td>{ project.email }</td>
+                                <td>{ project.message }</td>
+                                <td><button onClick={this.props.deleteProject.bind(this, project.id)} 
+                                className="btn btn-danger btn-sm">Delete</button></td>
+                            </tr>
+                        )) }
+                    </tbody>
+                </table>
+            </Fragment>
         )
     }
 }
 
-export default Projects
+
+const mapStateToProps = state => ({
+    projects: state.projects.projects
+});
+
+export default connect(mapStateToProps, { getProjects, deleteProject })(Projects);
