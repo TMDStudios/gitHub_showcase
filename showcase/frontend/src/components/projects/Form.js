@@ -20,6 +20,11 @@ export class Form extends Component {
         const { name, email, message } = this.state;
         const project = { name, email, message };
         this.props.addProject(project);
+        this.setState({
+            name: "",
+            email: "",
+            message: ""
+        });
     }
 
     render() {
