@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { createMessage } from './messages';
+import { createMessage, returnErrors } from './messages';
 
-import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from './types';
+import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT } from './types';
 
 // Get Projects
 export const getProjects = () => dispatch => {
@@ -10,7 +10,7 @@ export const getProjects = () => dispatch => {
             type: GET_PROJECTS,
             payload: res.data
         });
-    }).catch(err => console.log(err));
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // Delete Project
@@ -32,14 +32,5 @@ export const addProject = project => dispatch => {
             type: ADD_PROJECT,
             payload: res.data
         });
-    }).catch(err => {
-        const errors = {
-            msg: err.response.data,
-            status: err.response.status
-        }
-        dispatch({
-            type: GET_ERRORS,
-            payload: errors
-        });
-    });
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
