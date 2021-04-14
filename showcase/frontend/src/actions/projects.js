@@ -1,12 +1,13 @@
 import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
+import { tokenConfig } from "./auth";
 
 import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT } from "./types";
 
 // Get Projects
-export const getProjects = () => (dispatch) => {
+export const getProjects = () => (dispatch, getState) => {
   axios
-    .get("/api/projects/")
+    .get("/api/projects/", tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_PROJECTS,
@@ -19,9 +20,9 @@ export const getProjects = () => (dispatch) => {
 };
 
 // Delete Project
-export const deleteProject = (id) => (dispatch) => {
+export const deleteProject = (id) => (dispatch, getState) => {
   axios
-    .delete(`/api/projects/${id}/`)
+    .delete(`/api/projects/${id}/`, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ deleteProject: "Project Deleted" }));
       dispatch({
@@ -33,9 +34,9 @@ export const deleteProject = (id) => (dispatch) => {
 };
 
 // Add Project
-export const addProject = (project) => (dispatch) => {
+export const addProject = (project) => (dispatch, getState) => {
   axios
-    .post("/api/projects/", project)
+    .post("/api/projects/", project, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ addProject: "Project Added" }));
       dispatch({
