@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 export class Header extends Component {
-  static PropTypes = {
+  static propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
   };
@@ -15,6 +15,9 @@ export class Header extends Component {
 
     const authLinks = (
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <span className="navbar-text mr-3">
+          <strong>{user ? `Welcome ${user.username}` : ""}</strong>
+        </span>
         <li className="nav-item">
           <button
             className="nav-link btn btn-info btn-sm text-light"
