@@ -1,7 +1,7 @@
 # github_showcase
 GitHub Showcase is an open-source website that allows users to showcase their projects and get some exposure
 
-** *I am using this project to lear Ract Redux* **
+** *I am using this project to learn Ract Redux* **
 
 The website is not live yet
 
